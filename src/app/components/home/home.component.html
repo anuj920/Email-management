@@ -1,0 +1,156 @@
+<div class="container">
+    <section>
+
+        <div class="search-content row">
+            <div class="col-md-2">
+                <div class="datepicker">
+                    <label class="datepicker-label">From Date</label>
+                    <ejs-datepicker class='datepicker-input' placeholder='From Date' [min]="min_date" [max]="max_date" name="fromDate" #from [value]="from_date" [(ngModel)]="from_date" format ='dd/MM/yyyy'></ejs-datepicker>
+                </div>
+      
+            </div>
+
+            <div class="col-md-2">
+                <div class="datepicker">
+                    <label class="datepicker-label">To Date</label>
+                    <ejs-datepicker class='datepicker-input' placeholder='To Date' [min]="min_date" [max]="max_date" name="toDate" #to [value]="to_date" [(ngModel)]="to_date" format ='dd/MM/yyyy'></ejs-datepicker>
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <div (click)="filterByDate()" class="icon">
+                    <svg-icon src="../../../assets/image/icon_search.svg" [svgStyle]="{ 'width.px':28 }" ></svg-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="main-content">
+            <div class="result">Results: {{data?.length}} Mail(s)</div>
+            <div *ngIf="data?.length>0" class="table-responsive webview">
+                <table class="table table-hover"> 
+                    <thead>
+                        <tr>
+                            <th style="width: 75px !important;" (click)="sortByid()" >No. 
+                                <span *ngIf="sortingCase.id">
+                                    <span *ngIf="sortingCase.id_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                    <span *ngIf="!sortingCase.id_ASC"><i class="fas fa-caret-down"></i></span>
+                                </span>
+                            </th>
+                            <th (click)="sortByValue('email_from')" >From 
+                                <span *ngIf="sortingCase.email_from">
+                                    <span *ngIf="sortingCase.email_from_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                    <span *ngIf="!sortingCase.email_from_ASC"><i class="fas fa-caret-down"></i></span>
+                                </span>
+                            </th>
+                            <th (click)="sortByValue('email_to')">To
+                                <span *ngIf="sortingCase.email_to">
+                                    <span *ngIf="sortingCase.email_to_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                    <span *ngIf="!sortingCase.email_to_ASC"><i class="fas fa-caret-down"></i></span>
+                                </span>
+                            </th>
+                            <th (click)="sortByValue('subject')">Subject
+                                <span *ngIf="sortingCase.subject">
+                                    <span *ngIf="sortingCase.subject_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                    <span *ngIf="!sortingCase.subject_ASC"><i class="fas fa-caret-down"></i></span>
+                                </span>
+                            </th>
+                            <th (click)="sortByDate()">Date
+                                <span *ngIf="sortingCase.create">
+                                    <span *ngIf="sortingCase.create_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                    <span *ngIf="!sortingCase.create_ASC"><i class="fas fa-caret-down"></i></span>
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let message of data">
+                            <td>{{ message.id }}</td>
+                            <td>{{ message.email_from.length>25 ? message.email_from.slice(0,25)+"..." : message.email_from}}</td>
+                            <td>{{ message.email_to.length>25 ? message.email_to.slice(0,25)+"..." : message.email_to }}</td>
+                            <td class="text-capitalize">{{ message.subject.length>50 ? message.subject.slice(0,50)+"..." : message.subject }}</td>
+                            <td>{{message.create | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div *ngIf="data?.length>0" class="mobileview">
+
+                <div class="message-header">
+
+                    <div class="message-header-content">
+                        <span class="mobile-b-r" (click)="sortByid()" >No.
+                                <span *ngIf="sortingCase.id">
+                                    <span *ngIf="sortingCase.id_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                    <span *ngIf="!sortingCase.id_ASC"><i class="fas fa-caret-down"></i></span>
+                                </span>
+                        </span>
+
+                        <span class="mobile-b-r" (click)="sortByValue('email_from')" >From 
+                            <span *ngIf="sortingCase.email_from">
+                                <span *ngIf="sortingCase.email_from_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                <span *ngIf="!sortingCase.email_from_ASC"><i class="fas fa-caret-down"></i></span>
+                            </span>
+                        </span>
+
+                        <span class="mobile-b-r" (click)="sortByValue('email_to')">To
+                            <span *ngIf="sortingCase.email_to">
+                                <span *ngIf="sortingCase.email_to_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                <span *ngIf="!sortingCase.email_to_ASC"><i class="fas fa-caret-down"></i></span>
+                            </span>
+                        </span>
+
+                        <span class="mobile-b-r" (click)="sortByValue('subject')">Subject
+                            <span *ngIf="sortingCase.subject">
+                                <span *ngIf="sortingCase.subject_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                <span *ngIf="!sortingCase.subject_ASC"><i class="fas fa-caret-down"></i></span>
+                            </span>
+                        </span>
+                        <span (click)="sortByDate()">Date
+                            <span *ngIf="sortingCase.create">
+                                <span *ngIf="sortingCase.create_ASC"><svg-icon src="../../../assets/image/icon_arrow01.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon></span>
+                                <span *ngIf="!sortingCase.create_ASC"><i class="fas fa-caret-down"></i></span>
+                            </span>
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div *ngFor="let message of data" class="messages">
+
+                    <div class="message-head">
+                        <span class="message-left-icon">
+                            <svg-icon src="../../../assets/image/icon_mail_sp.svg" [svgStyle]="{ 'width.px':14 }"></svg-icon>
+                        </span>
+                        <span class="message-center-body">
+                            <span class="font-weight-bold">
+                                {{message.email_from.length>25 ? message.email_from.slice(0,25) : message.email_from}}
+                                <span class="message-right-date font-weight-normal">{{ message.create | date:'dd/MM/yyyy'}} <svg-icon src="../../../assets/image/icon_arrow02.svg" [svgStyle]="{ 'width.px': 5 }"></svg-icon> </span>
+                            </span>
+                            <br>
+                            <span>
+                                {{message.email_to.length>25 ? message.email_to.slice(0,25) : message.email_to}}
+                            </span>
+                        </span>
+
+                    </div>
+                    <div class="message-subject">
+                        <span class="text-capitalize">{{message.subject.length>50 ? message.subject.slice(0,50)+"..." : message.subject}}</span>
+                    </div>
+
+                </div>
+                
+            </div>
+
+
+            <div *ngIf="data?.length==0" class="no-message">
+                <div class="no-message-icon">
+                    <img src="../../../assets/image/logo.png">
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
