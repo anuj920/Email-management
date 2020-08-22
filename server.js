@@ -18,11 +18,11 @@ const forceSSL = function() {
 
 app.use(forceSSL());
 
-app.use(express.static(__dirname + '/dist/Email-management'));
+app.use(express.static(__dirname + '/dist/Email-Management'));
 
 app.get('/*', function(req,res) {
         
-    res.sendFile(path.join(__dirname+'/dist/Email-management/index.html'));
+    res.sendFile(path.join(__dirname+'/dist/Email-Management/index.html'));
 });
 
 app.listen(process.env.PORT || 8080);
