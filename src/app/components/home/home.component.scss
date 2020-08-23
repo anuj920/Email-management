@@ -91,6 +91,10 @@ i{
     border-bottom: 1px solid #E0E0E0;
 }
 
+.messages :hover{
+    cursor: pointer;
+}
+
 .message-head{
     position: relative;
 }

@@ -1,0 +1,42 @@
+<div class="container">
+    <br>
+    <div class="head">
+        <span class="left-icon" (click)="goToHome()"><i class="fas fa-arrow-left"></i></span>
+        <span><h4>Mail Preview</h4></span>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="message-subject">
+
+            <h4 class="text-capitalize">{{messageDetail?.subject}}</h4>
+
+        </div>
+
+
+
+        <div class="address">
+
+            <span><i class="fas fa-user-circle"></i></span> 
+            <span> {{messageDetail?.first_name}} {{messageDetail?.last_name}}</span>
+            <span style="font-size: 12px;"><{{messageDetail?.email_from}}></span>
+
+        </div>
+
+
+        <div class="message-body">
+
+            <div class="message-content text-capitalize">
+
+                <span>Hello Sir/Madam,</span> <br> <br>
+                <span> Below are the sample content of mail message</span>
+                <br>
+                <br>
+                <br>
+                <span>{{messageDetail?.message}}</span>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

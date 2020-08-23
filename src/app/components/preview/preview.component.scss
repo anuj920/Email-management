@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.content{
+    padding: 25px 15px;
+}
+
+.message-subject{
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.address{
+    margin: 15px 0 25px;
+}
+
+.fa-user-circle{
+    font-size: 36px;
+    float: left;
+    margin-right: 5px;
+    color: #E0E0E0;
+}
+
+.fa-arrow-left{
+    font-size: 30px;
+    float: left;
+    margin-right: 10px;
+}
+
+.left-icon :hover{
+    cursor: pointer;
+}
+
+.message-body{
+    background-color: #F5F5F5;
+    padding: 0 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.message-content{
+    background-color: #FAFAFA;
+    padding: 25px 15px;
+    max-width: 60%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 992px){
+    .message-content{
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .message-content{
+        max-width: 97.5%;
+    }
+}

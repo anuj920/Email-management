@@ -8,11 +8,13 @@ import { HomeComponent } from './components/home/home.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { PreviewComponent } from './components/preview/preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PreviewComponent
   ],
   imports: [
     BrowserModule,

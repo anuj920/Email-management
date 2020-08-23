@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SortDefault } from './home.entity'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   min_date: Date;
   max_date: Date;
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient,private route: Router) { 
     this.sortingCase = new SortDefault()
   }
 
@@ -101,6 +102,12 @@ export class HomeComponent implements OnInit {
       ))
       this.sortingCase = new SortDefault();
       this.sortByDate()
+    }
+  }
+
+  goToPreview(id){
+    if(id){
+      this.route.navigate(['preview',id])
     }
   }
 

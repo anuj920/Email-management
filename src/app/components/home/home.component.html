@@ -64,7 +64,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let message of data">
+                        <tr *ngFor="let message of data" (click)="goToPreview(message.id)">
                             <td>{{ message.id }}</td>
                             <td>{{ message.email_from.length>25 ? message.email_from.slice(0,25)+"..." : message.email_from}}</td>
                             <td>{{ message.email_to.length>25 ? message.email_to.slice(0,25)+"..." : message.email_to }}</td>
@@ -118,7 +118,7 @@
 
                 </div>
 
-                <div *ngFor="let message of data" class="messages">
+                <div *ngFor="let message of data" (click)="goToPreview(message.id)" class="messages">
 
                     <div class="message-head">
                         <span class="message-left-icon">
